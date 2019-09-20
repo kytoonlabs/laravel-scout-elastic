@@ -3,10 +3,11 @@
 use Illuminate\Database\Eloquent\Collection;
 use Laravel\Scout\Builder;
 use ScoutEngines\Elasticsearch\ElasticsearchEngine;
+use PHPUnit\Framework\TestCase;
 
-class ElasticsearchEngineTest extends PHPUnit_Framework_TestCase
+class ElasticsearchEngineTest extends TestCase
 {
-    public function tearDown()
+    public function tearDown() : void
     {
         Mockery::close();
     }
