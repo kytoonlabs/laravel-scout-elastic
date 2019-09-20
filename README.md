@@ -1,6 +1,7 @@
-# Laravel Scout Elasticsearch Driver
+# Laravel Scout Elasticsearch Driver (Multi-Index)
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Build Status](https://travis-ci.org/kytoonlabs/laravel-scout-elastic.svg?branch=master)](https://travis-ci.org/kytoonlabs/laravel-scout-elastic)
 
 This package makes is the [Elasticsearch](https://www.elastic.co/products/elasticsearch) driver for Laravel Scout.
 
@@ -16,7 +17,7 @@ This package makes is the [Elasticsearch](https://www.elastic.co/products/elasti
 You can install the package via composer:
 
 ``` bash
-composer require tamayo/laravel-scout-elastic
+composer require kytoonlabs/laravel-scout-elastic
 ```
 
 You must add the Scout service provider and the package service provider in your app.php config:
