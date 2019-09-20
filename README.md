@@ -45,7 +45,6 @@ After you've published the Laravel Scout package configuration:
 
 ...
     'elasticsearch' => [
-        'index' => env('ELASTICSEARCH_INDEX', 'laravel'),
         'hosts' => [
             env('ELASTICSEARCH_HOST', 'http://localhost'),
         ],
@@ -58,8 +57,8 @@ After you've published the Laravel Scout package configuration:
 Now you can use Laravel Scout as described in the [official documentation](https://laravel.com/docs/5.3/scout)
 ## Credits
 
-- [Erick Tamayo](https://github.com/ericktamayo)
-- [All Contributors](../../contributors)
+- [Erick Tamayo](https://github.com/ericktamayo) and [All Contributors](../../contributors)
+- [KytoonLabs](https://github.com/kytoonlabs)
 
 ## License
 
