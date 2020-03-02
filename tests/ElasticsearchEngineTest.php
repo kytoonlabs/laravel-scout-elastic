@@ -88,7 +88,7 @@ class ElasticsearchEngineTest extends TestCase
     {
         /** @var \Elasticsearch\Client|\Mockery\MockInterface $client */
         $client = Mockery::mock(\Elasticsearch\Client::class);
-        $client->shouldReceive('search')->with('modified_by_callback');
+        $client->shouldReceive('search')->with(['index' => 'modified_by_callback']);
 
         $engine = new ElasticsearchEngine($client);
         $builder = new Laravel\Scout\Builder(
@@ -97,7 +97,7 @@ class ElasticsearchEngineTest extends TestCase
             function (\Elasticsearch\Client $client, $query, $params) {
                 $this->assertNotEmpty($params);
                 $this->assertEquals('huayra', $query);
-                $params = 'modified_by_callback';
+                $params = [ 'index' => 'modified_by_callback'];
 
                 return $client->search($params);
             }
