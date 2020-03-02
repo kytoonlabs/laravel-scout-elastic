@@ -110,7 +110,7 @@ class ElasticsearchEngine extends Engine
             'size' => $perPage,
         ]);
 
-       $result['nbPages'] = $this->getTotalCount()/$perPage;
+       $result['nbPages'] = $this->getTotalCount($result)/$perPage;
 
         return $result;
     }
