@@ -89,7 +89,7 @@ class ElasticsearchEngine extends Engine
     public function search(Builder $builder)
     {
         return $this->performSearch($builder, array_filter([
-            'numericFilters' => $this->filters($builder),
+            'numericBooleanFilters' => $this->filters($builder),
             'size' => $builder->limit,
         ]));
     }
@@ -105,7 +105,7 @@ class ElasticsearchEngine extends Engine
     public function paginate(Builder $builder, $perPage, $page)
     {
         $result = $this->performSearch($builder, [
-            'numericFilters' => $this->filters($builder),
+            'numericBooleanFilters' => $this->filters($builder),
             'from' => (($page * $perPage) - $perPage),
             'size' => $perPage,
         ]);
@@ -148,9 +148,8 @@ class ElasticsearchEngine extends Engine
             $params['body']['size'] = $options['size'];
         }
 
-        if (isset($options['numericFilters']) && count($options['numericFilters'])) {
-            $params['body']['query']['bool']['must'] = array_merge($params['body']['query']['bool']['must'],
-                $options['numericFilters']);
+        if (isset($options['numericBooleanFilters']) && count($options['numericBooleanFilters'])) {
+            $params['body']['query']['bool']['filter'] = $options['numericBooleanFilters'];
         }
 
         if ($builder->callback) {
@@ -176,6 +175,10 @@ class ElasticsearchEngine extends Engine
         return collect($builder->wheres)->map(function ($value, $key) {
             if (is_array($value)) {
                 return ['terms' => [$key => $value]];
+            }
+
+            if (in_array($value, ['true','false'])) {
+                return ['term' => [$key => $value]];
             }
 
             return ['match_phrase' => [$key => $value]];
